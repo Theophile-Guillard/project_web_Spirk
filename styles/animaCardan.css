@@ -1,0 +1,51 @@
+.movingCardan{
+    height: 500px;
+    width: 500px;
+    
+}
+.marging{margin-left: 500px;}
+.marging-loc{position: relative;
+      left:27%;}
+.margings{margin-left: 1500px; margin-top: 500px; min-height:50px; min-width: 50px;}
+.marging p{
+    color:yellowgreen;
+    position: relative;
+    top: 125px;
+    left: 50px;
+    z-index: 1;
+}
+.cardan img{
+    position: relative;
+    left:-25px;
+    top:-25px;
+}
+
+.cardan {
+
+    padding:0;
+    margin:0;
+    width: 200px;
+    height: 200px;
+    animation-name:Cardan;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+}
+
+
+@keyframes Cardan {
+   from{rotate: 0deg;}
+     8%{rotate: 30deg;}
+    16%{rotate: 60deg;}
+    24%{rotate: 90deg;}
+    32%{rotate: 120deg;}
+    40%{rotate: 150deg;}
+    49%{rotate: 180deg;}
+    56%{rotate: 210deg;}
+    64%{rotate: 240deg;}
+    72%{rotate: 270deg;}
+    80%{rotate: 300deg;}
+    88%{rotate: 330deg;}
+    to{rotate:  360deg;}
+}

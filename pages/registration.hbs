@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Кипарис-Как связаться</title>
+    <link rel="stylesheet" type="text/css" href="styles/margle.css">
+    <link rel="stylesheet" type="text/css" href="styles/animaCardan.css">
+</head>
+<body class="main-of-all">
+    {{> menu}}
+    <main>
+        <div class="masterblock new-item">
+            
+            <h1>Регистрация</h1>
+            
+            <input class="new_item" type="text" placeholder="Логин*" name="name" id="name">
+            <p class="errors" id="name_error">
+            </p>
+
+            
+            <input class="new_item" type="text" placeholder="Пароль*" name="developer" id="developer">
+            <p class="errors" id="developer_error"></p>
+
+            
+    
+          
+            <input class="vers" type="button"  value="Зарегистрироваться" id="save_all">
+            
+
+            <script src="js/validate.js"></script>
+        </div>
+        <div class="btn-up btn-up_hide"></div>
+    </main>
+    <script src="js/pgUp.js"></script>
+	{{> footer}}
+</body>
+</html>

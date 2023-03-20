@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Кипарис-Как связаться</title>
+    <link rel="stylesheet" type="text/css" href="styles/margle.css">
+    <link rel="stylesheet" type="text/css" href="styles/animaCardan.css">
+</head>
+<body class="main-of-all">
+    {{> menu}}
+    <main>
+        <div class="masterblock new-item">
+            
+            <h1>Добавление продукта</h1>
+            
+            <input class="new_item" type="text" placeholder="Имя проекта*" name="name" id="name">
+            <p class="errors" id="name_error">
+            </p>
+
+            
+            <input class="new_item" type="text" placeholder="разработчик*" name="developer" id="developer">
+            <p class="errors" id="developer_error"></p>
+
+            
+            <input class="new_item" type="text" placeholder="издатель*" name="publisher" id="publisher">
+            <p class="errors" id="publisher_error"></p>
+
+            
+            <input class="new_item" type="text" placeholder="платформа*" name="platform" id="platform">
+            <p class="errors" id="platform_error"></p>
+
+            
+            <input class="new_item" type="text" placeholder="цена в рублях*" name="price" id="price">
+            <p class="errors" id="price_error"></p>
+
+            
+            <textarea class="discer" type="text" placeholder="описание*" name="discription" id="discription"></textarea>
+            <p class="errors" id="discription_error"></p>
+
+            
+           
+           
+
+            <input class="vers" type="button"  value="добавить фотографию" id="save_all">
+            <input class="vers" type="button"  value="добавить жанр" id="save_all">
+            <input class="vers" type="button"  value="добавить поджанр" id="save_all">
+            <input class="vers" type="button"  value="добавить товар" id="save_all">
+            
+
+            <script src="js/validate.js"></script>
+        </div>
+        <div class="btn-up btn-up_hide"></div>
+    </main>
+    <script src="js/pgUp.js"></script>
+	{{> footer}}
+</body>
+</html>

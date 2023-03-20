@@ -1,0 +1,88 @@
+.animate{
+    display: block;
+    width: 1100px;
+    height: 50px;
+    border: #2ea540 2px dotted;
+    animation-name:myAnimaColor;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.cube{
+
+    height: 20px;
+    width: 20px;
+    background:linear-gradient(to left top,#6531b9,#a52e2e);
+    border: #2ea540 2px solid;
+    
+    position: relative;
+    animation-name:moveAround;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moveAround{
+    from{
+        left:0;
+        top:0px;
+    }
+    5%{left:115px;top:0px; rotate: -5rad;}
+    10%{left:230px;top:0px;rotate: -10rad;}
+    15%{left:345px;top:0px;rotate: -15rad;}
+    20%{left:460px;top:0px;rotate: -20rad;}
+    25%{left:575px;top:0px;rotate: -25rad;}
+    30%{left:690px;top:0px;rotate: -30rad;}
+    35%{left:805px;top:0px;rotate: -35rad;}
+    40%{left:920px;top:0px;rotate: -40rad;}
+    45%{left:1035px;top:0px;rotate: -45rad;}
+    47%{left:1076px;top:0px;rotate: -50rad;}
+    50%{left:1076px;top:26px;rotate: -55rad;}
+    52%{left:1035px;top:26px;rotate: -60rad;}
+    55%{left:920px;top:26px;rotate: -65rad;}
+    60%{left:805px;top:26px;rotate: -70rad;}
+    65%{left:690px;top:26px;rotate: -75rad;}
+    70%{left:575px;top:26px;rotate: -80rad;}
+    75%{left:460px;top:26px;rotate: -85rad;}
+    80%{left:345px;top:26px;rotate: -90rad;}
+    85%{left:235px;top:26px;rotate: -95rad;}
+    90%{left:115px;top:26px;rotate:-100rad;}
+    95%{left:0px;top:26px;rotate: -105rad;}
+     to{left:0px;top:0px;rotate: -110rad;}
+    
+}
+
+
+@keyframes myAnimaColor{
+	from{
+		
+		background-color: #2ea540 ;
+		
+	}
+	20%{
+		
+		background-color: #9aa72d ;
+	}
+	40%{
+	
+		background-color: #a3502f ;
+	}
+	60%{
+	
+		background-color: #a52e2e ;
+	}
+	80%{
+		
+		background-color: #6531b9 ;
+	}
+
+	to{
+		
+		background-color: #2ea540 ;
+	}
+}
+
+
+
+
+
+
