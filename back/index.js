@@ -27,11 +27,11 @@ app.use(express.static(dirk));
 //console.log(dirk,"    //")
 const jsonParser = express.json();
 
-app.use(function(request, response, next){
+app.use(jsonParser,function(request, response, next){
     /////работа с куками и авторизацией
     next();
 });
-app.use(function(request, response, next){
+app.use(jsonParser,function(request, response, next){
     /////работа со статическими страницами
     let hf=dirk+"/pages"+request.url+".hbs";
     console.log("url ", hf);
@@ -48,11 +48,13 @@ app.use(function(request, response, next){
             });
         }
     });
-
-   
 });
 app.get("/",jsonParser, function(request, response){
     response.render('index.hbs');
 });
 
 
+app.post("/try_registration",jsonParser,function(request,response){
+    console.log("reg");
+    response.json({login:request.body.login,password:request.body.password,correct:true});
+})
