@@ -25,7 +25,14 @@ rbutton.addEventListener("click", function(){
   request.addEventListener("load",function(){
     let res=JSON.parse(request.response);
     //if (res.good){
-      
+      //куки хранятся паршиво, наполовину строка, наполовину контейнер
+      //чтобы нормально его прочитать, надо использовать на document.cookie 
+      //всякие паршивые функции split delay parse и т.д.
+    let a=document.cookie;
+    let b=JSON.parse(a);
+    console.log(c)
+    console.log(b);
+    console.log(a);
     //}
 
   })
