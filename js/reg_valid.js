@@ -17,14 +17,17 @@ rbutton.addEventListener("click", function(){
       err+='пароль должен быть длинной не меньше 5 символов'
   b=true;
     }
-
     if(!b){
   let user=JSON.stringify({login:log,password:p});
   let request=new XMLHttpRequest();
   request.open("POST","/try_registration",true);
   request.setRequestHeader("Content-Type","application/json");
   request.addEventListener("load",function(){
-    let receivedUser=JSON.parse(request.response);
+    let res=JSON.parse(request.response);
+    //if (res.good){
+      
+    //}
+
   })
   request.send(user);}else{
     alert(err);
