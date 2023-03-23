@@ -9,28 +9,19 @@
     {{> menu}}
     <main>
         <div class="masterblock new-item">
-            
             <h1>Вход</h1>
-            
-            <input class="new_item" type="text" placeholder="Логин*" name="name" id="name">
+            <input class="new_item" type="text" placeholder="Логин*" id="reg_log">
             <p class="errors" id="name_error">
             </p>
-
-            
-            <input class="new_item" type="text" placeholder="Пароль*" name="developer" id="developer">
+            <input class="new_item" type="text" placeholder="Пароль*" id="reg_pass">
             <p class="errors" id="developer_error"></p>
-
-            
-    
-          
-            <input class="vers" type="button"  value="Войти" id="save_all">
-            
-
+            <input class="vers" type="button"  value="Войти" id="reg_save">
             <script src="js/validate.js"></script>
         </div>
         <div class="btn-up btn-up_hide"></div>
     </main>
     <script src="js/pgUp.js"></script>
+    <script src="js/auth_valid.js"></script>
 	{{> footer}}
 </body>
 </html>

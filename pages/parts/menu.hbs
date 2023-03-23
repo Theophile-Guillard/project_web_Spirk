@@ -4,9 +4,15 @@
             <a id="up" href="index">Главная</a>
             <a href="about_us">О проекте</a>
             <a href="contacts">Поддержка</a>
-            <a href="new_item_game">Добавить продукт</a>
-            <a href="login">Вход</a> 
-            <a href="registration">Регистрация</a>
+            <a id="add_new">Добавить продукт</a>
+             
+            {{#isAuth}}
+             <a>вы вошли как <u>{{tempUser}}</u></a>
+             <a href="exit">Выход</a>
+                {{else}}
+                <a href="login">Вход</a>
+                <a href="registration">Регистрация</a>
+                {{/isAuth}}
         </nav>
         <nav class="contexttopmenu">
             <a title="раздел с личными рекомендациями">Рекомендации</a>
@@ -14,5 +20,6 @@
             <a title="раздел с инди-разработками">Разработки</a>
                 <input class="search" placeholder="поиск">
                 <input type="button" class="button" value="Поиск">
+                <script src="js/try_new.js"></script>
         </nav>
     </header>

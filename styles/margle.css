@@ -9,6 +9,10 @@ left:5px;
 top:200px;
 
 }
+.saib input{
+	
+	display: inline-block;
+}
 .leftmenu-ul h1 {
 	padding: 1px;
 	text-align: center;	

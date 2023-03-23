@@ -20,7 +20,7 @@ rbutton.addEventListener("click", function(){
     if(!b){
   let user=JSON.stringify({login:log,password:p});
   let request=new XMLHttpRequest();
-  request.open("POST","/try_registration",true);
+  request.open("POST","/try_auth",true);
   request.setRequestHeader("Content-Type","application/json");
   request.addEventListener("load",function(){
    // console.log(request.response);
