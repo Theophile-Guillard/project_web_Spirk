@@ -156,27 +156,7 @@ hbs.registerHelper('tempUser',function(){
     return serverCookie.user;
 })
 
-hbs.registerHelper('named_rol',function(){
-   // let user=[login,password];
-   let a;
-   let b=true;
-    console.log('named_rol kek')
-    let sql='select distinct name_rol from filters';
-   connection.query(sql,function(err,res){
-    
-    a=' <select class="selkj"  id="rol">';
-    console.log('&&&& ',res);
-    for (let i=0;i<res.length;i++){
-    a+='<option value="'+res[i].name_rol+'">'+res[i].name_rol+'</option>';
-    }
-    a+=' </select>'
 
-    b=false;
-     })  
-     //////////////////////////Хелпер отправляет раньше ответа от бд
-     return  'a';
-    }
-     )  
 
 app.post('/trusting',jsonParser,function(request,response){
 
