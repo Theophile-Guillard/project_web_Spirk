@@ -20,6 +20,7 @@ const jsonParser = express.json();
 
 
 const mysql = require("mysql2");
+const { response } = require("express");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -58,7 +59,7 @@ app.use(jsonParser,function(request, response, next){
     serverCookie=request.cookies;
     fs.access(hf, function(error){
         if (error) {
-            console.log("error?, it's router?//////////////////",error)
+           // console.log("error?, it's router?//////////////////",error)
             next();
         } else {
             fs.stat(hf, function(err, stats){
@@ -73,7 +74,7 @@ app.use(jsonParser,function(request, response, next){
         }
     });
 });
-app.get("/",jsonParser, function(request, sresponse){
+app.get("/",jsonParser, function(request, response){
     response.render('index');
 });
 app.post("/try_registration",jsonParser,function(request,response){
@@ -153,6 +154,50 @@ hbs.registerHelper('isAuth',function(options){
 })
 hbs.registerHelper('tempUser',function(){
     return serverCookie.user;
+})
+
+hbs.registerHelper('named_rol',function(){
+   // let user=[login,password];
+   let a;
+   let b=true;
+    console.log('named_rol kek')
+    let sql='select distinct name_rol from filters';
+   connection.query(sql,function(err,res){
+    
+    a=' <select class="selkj"  id="rol">';
+    console.log('&&&& ',res);
+    for (let i=0;i<res.length;i++){
+    a+='<option value="'+res[i].name_rol+'">'+res[i].name_rol+'</option>';
+    }
+    a+=' </select>'
+
+    b=false;
+     })  
+     //////////////////////////Хелпер отправляет раньше ответа от бд
+     return  'a';
+    }
+     )  
+
+app.post('/trusting',jsonParser,function(request,response){
+
+     console.log('trust');
+     let sql='select distinct name_rol from filters';
+    connection.query(sql,function(err,res){
+    response.json(res);
+      })
+
+    
+})
+app.post('/contrust',jsonParser,function(request,response){
+
+console.log('contrust',request.body.rol);
+    let user=[request.body.rol]
+    let sql='select distinct filter from filters where name_rol=?';
+   connection.query(sql,user,function(err,res){
+   response.json(res);
+     })
+
+   
 })
 
 app.get('/exit',jsonParser,function(request,response){

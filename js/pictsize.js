@@ -32,18 +32,6 @@ if (e.target.className=='zooms'){
         img.style.left='50px';
         img.style.top='5%';
         
-
-        /*
-        divx.style.zIndex=22;
-        divx.style.position='fixed';
-        divx.style.backgroundColor='black';
-        console.log(divx.style);
-       divx.style.width=afterW;
-       divx.style.height=afterH;
-
-       
-        divx.style.backgroundColor='#ffff';
-        divx.appendChild(img);*/
         document.body.append(img);
   }
   }

@@ -49,6 +49,7 @@ border-right: 5px solid #039D1F;
 }
 .leftmenu-ul div p{display: inline;}
 
+
 .LogoAll{ 
 	position:absolute;
 }
@@ -629,5 +630,45 @@ color:#d8d8d8;
 	
 	  
 
+.selk{
+	font-size: 20px;
+	color: #d8d8d8;
+	text-shadow: -1px -1px 0 black, 1px 1px 0
+	 black, 1px -1px 0 black, -1px 1px 0 black;
+}
+.logx{
+	font-size: 20px;
+	color: #d8d8d8;
+	text-shadow: -1px -1px 0 black, 1px 1px 0
+	 black, 1px -1px 0 black, -1px 1px 0 black;
+	
+}
+.mimrol{
+	
+	max-width: 200px;
+	border: 4px double #070611;
+}
+.mimrol h2{
+	margin-top: 0;
+	margin-bottom: 5px;
+	font-size: 25px;
+	border: 4px double #3ba831;
 
-
+	text-shadow: -1px -1px 0 black, 1px 1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+color: #93d43d;
+}
+.mrol  p{ display: inline;
+	font-size: 20px;
+	color: #d8d8d8;
+	text-shadow: -1px -1px 0 black, 1px 1px 0
+	 black, 1px -1px 0 black, -1px 1px 0 black;
+}
+  .mrol div{
+		display: flexbox;
+		min-height: 30px;
+		min-width: 50px;
+		visibility: inherit;
+	  }
+	  .mrol input{
+		max-width: 20px;
+	  }
