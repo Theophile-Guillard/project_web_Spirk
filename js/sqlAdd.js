@@ -29,7 +29,7 @@ function arc(nmrol){
 
         let opt=document.createElement('input');
         opt.setAttribute('type','checkbox');
-      //  opt.setAttribute('value', rec[i].filter);
+        opt.setAttribute('value', rec[i].filter);
         
 
         let p=document.createElement('p');

@@ -28,11 +28,16 @@
             <input class="new_item" type="text" placeholder="цена в рублях*" name="price" id="price">
             <p class="errors" id="price_error"></p>
 
+            <input class="new_item" type="text" placeholder="дата выхода*" name="date" id="date">
+            <p class="errors" id="price_error"></p>
+
             <textarea class="discer" type="text" placeholder="описание*" name="discription" id="discription"></textarea>
             <p class="errors" id="discription_error"></p>
             
-            <input class="vers" class="saib" type="file"  value="добавить фотографию" id="photo" multiple="true">
-          
+            <form action="/game_upload" method="POST" enctype="multipart/form-data" >
+            <input class="vers" class="saib" type="file"  value="добавить фотографию" name="photo" id="photo" >
+          <input type="submit">
+          </form>
          
 
  <p class="logx">Выберите жанр</p>
@@ -46,8 +51,8 @@
            <div class="mrol" id="sgh">
            </div></div>
             
-
-            <input class="vers" class="saib" type="file"  value="добавить товар" id="save_all" >
+<input class="vers" class="saib" type="button"  value="добавить товар" id="save_all" >
+    
             <script src="js/validate.js"></script>
         </div>
         <div class="btn-up btn-up_hide"></div>

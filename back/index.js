@@ -1,10 +1,13 @@
 
 const express = require("express");
+var fileUpload = require('express-fileupload');
 const expressHbs = require("express-handlebars");
+var bodyParser = require('body-parser')
 const hbs = require("hbs");
 const app = express();
 var cookieParser=require('cookie-parser')
 let fs=require("fs")
+const formidable = require('formidable');
 let port=3000;
 const dn=__dirname.length
 const dirk=__dirname.slice(0,dn-5);
@@ -17,7 +20,10 @@ app.set('views',dirk+'/pages');
 app.use(express.static(dirk));
 app.use(cookieParser());
 const jsonParser = express.json();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+// in latest body-parser use like below.
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const mysql = require("mysql2");
 const { response } = require("express");
@@ -57,6 +63,8 @@ app.use(jsonParser,function(request, response, next){
     let hf=dirk+"/pages"+request.url+".hbs";
     console.log("url ", hf);
     serverCookie=request.cookies;
+
+    
     fs.access(hf, function(error){
         if (error) {
            // console.log("error?, it's router?//////////////////",error)
@@ -72,9 +80,13 @@ app.use(jsonParser,function(request, response, next){
                 }
             });
         }
-    });
+    }     );
 });
+
+
+
 app.get("/",jsonParser, function(request, response){
+    console.log('general line f');
     response.render('index');
 });
 app.post("/try_registration",jsonParser,function(request,response){
@@ -169,16 +181,53 @@ app.post('/trusting',jsonParser,function(request,response){
     
 })
 app.post('/contrust',jsonParser,function(request,response){
-
-console.log('contrust',request.body.rol);
+console.log('contrust',request.files);
     let user=[request.body.rol]
     let sql='select distinct filter from filters where name_rol=?';
    connection.query(sql,user,function(err,res){
    response.json(res);
      })
-
-   
 })
+
+
+app.post('/game_upload',jsonParser, function(request,response){
+   console.log('ggg')
+  
+var form=new formidable.IncomingForm();
+form.parse(request,function(err,fields,files){
+    if (err) console.error(err);
+    console.log(fields);
+fs.readFile(files['photo'].filepath,(err,data)=>{
+    if (err) throw err;
+    console.log('data',data)
+let user=[
+    fields['name'],
+fields['date'],
+fields['developer'],
+fields['publisher'],
+fields['platform'],
+fields['price'],
+fields['discription'],
+data,    //blob,//files['photo'],///img
+ serverCookie.user,//login
+ fields['nrol'],
+ fields['tags']
+]            
+let sql='insert into games(name,date_up,developer,publisher,platform,price,description,main_img,login,gen_filter,side_filters) values(?,?,?,?,?,?,?,?,?,?,?);';
+           connection.query(sql,user,function(err,res){
+           console.log('err', err);
+            //response.json(res);
+
+            let urt=URL.createObjectURL(new Blob(data));
+            console.log(urt);
+         //   response.redirect('index')   
+             })})
+             
+});
+
+ 
+});
+
 
 app.get('/exit',jsonParser,function(request,response){
     response.clearCookie('auth');

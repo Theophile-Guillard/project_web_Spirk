@@ -7,7 +7,7 @@ let publisher=document.querySelector("#publisher");
 let platform=document.querySelector("#platform");
 let price=document.querySelector("#price");
 let discription=document.querySelector("#discription");
-let email=document.querySelector("#email");
+let date=document.querySelector("#date");
 
 let name_e=document.querySelector("#name_error");
 let developer_e=document.querySelector("#developer_error");
@@ -131,26 +131,67 @@ button.addEventListener("click", function(){
     }
     if (has){glob=true;
         temp_e.innerHTML="*Описание должно быть не менее 10 символов";} else {temp_e.innerHTML="";}
-    has=false;
-    temp=email.value;
-    temp_e=email_e;
-    if (temp==""){
-        sum_error+="почта пустая\n";
-        has=true;
-    }else {
-        const EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        //Регулярное выражение соответствующее стандарту на почты RFC 5322
-        if (!EMAIL_REGEXP.test(temp)){
-            has=true;
-            sum_error+="некорректно введенная почта\n";
-        }
-    }
-    if (has){glob=true;
-        temp_e.innerHTML="*Почта должна быть соответствовать шаблону example@gmail.com";} else {temp_e.innerHTML="";}
-    has=false;
     if (glob){
 alert(sum_error);
     }else{
+
+
         alert("Заявка на товар успешно отправлена, ожидайте ответа от наших менеджеров");
+    
+
+
+        
+//добавить фото, жанр, поджанры
+
+
+
+
+
+
+
+let b=document.getElementById('nrol');
+let sumtags='';
+let button=document.getElementById('sgh');
+let k=button.firstChild;
+while (k.nextElementSibling!=null){
+    k=k.nextElementSibling;
+    let xc=k.firstChild;
+    if (xc.checked){
+sumtags+='::'+xc.value;
+    }
+}
+
+var formData = new FormData();
+let a=document.getElementById('photo');
+let bv=document.getElementById('save_all');
+
+formData.append('nrol',b.value);
+formData.append('tags',sumtags);
+formData.append('name',name.value);
+formData.append('developer',developer.value);
+formData.append('publisher',publisher.value);
+formData.append('platform',platform.value);
+formData.append('price',price.value);
+formData.append('discription',discription.value);
+formData.append('date',date.value);
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', "/game_upload" , true);
+    formData.append('photo',a.files[0]);
+    var request = new XMLHttpRequest();
+request.open("POST", '/game_upload');
+console.log('forming data....');
+request.send(formData);
+  
+
+window.location.href='index';
     }
 })
+
+
+
+
+
+
+
