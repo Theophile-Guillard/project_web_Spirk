@@ -36,7 +36,6 @@ const connection = mysql.createConnection({
 
 
 
-
 connection.connect(function(err){
     if (err) {
       return console.error("Ошибка: " + err.message);
@@ -181,13 +180,28 @@ app.post('/trusting',jsonParser,function(request,response){
     
 })
 app.post('/contrust',jsonParser,function(request,response){
-console.log('contrust',request.files);
+console.log('contrust');
     let user=[request.body.rol]
     let sql='select distinct filter from filters where name_rol=?';
    connection.query(sql,user,function(err,res){
    response.json(res);
      })
 })
+app.post('/catalogih',jsonParser,function(request,response){
+    console.log('catalogih');
+        //let user=[request.body.rol]
+        let sql='select * from games';
+       connection.query(sql,function(err,res){
+     //  console.log(res[0].main_img);
+     let g=[];
+for (let i=0;i<res.length;i++){
+
+}
+
+
+       response.json(res);
+         })
+    })
 
 
 app.post('/game_upload',jsonParser, function(request,response){
