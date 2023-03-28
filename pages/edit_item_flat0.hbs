@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Кипарис-Как связаться</title>
+    <link rel="stylesheet" type="text/css" href="styles/margle.css">
+    <link rel="stylesheet" type="text/css" href="styles/animaCardan.css">
+</head>
+<body class="main-of-all">
+    {{> menu}}
+    <main>
+        <div class="masterblock new-item">
+            
+            <h1>Изменение Объявления</h1>
+            
+            <input class="new_item" type="text" placeholder="Название жилья*" name="name" id="name" value='{{name}}'>
+            <p class="errors" id="name_error">
+            </p>
+            
+            <input class="new_item" type="text" placeholder="Контактное лицо*" name="developer" id="developer" value='{{developer}}'>
+            <p class="errors" id="developer_error"></p>
+            
+            <input class="new_item" type="text" placeholder="адрес*" name="adress" id="adress" value='{{adress}}'>
+            <p class="errors" id="adress_error"></p>
+            
+            <input class="new_item" type="text" placeholder="Койко-мест в номере*" name="count_bed" id="count_bed" value='{{count_bed}}'>
+            <p class="errors" id="count_bed_error"></p>
+            
+            <input class="new_item" type="text" placeholder="цена в рублях за ночь*" name="price" id="price" value='{{price}}'>
+            <p class="errors" id="price_error"></p>
+
+            <input class="new_item" type="text" placeholder="Контактный телефон*" name="date" id="date" value='{{date_up}}'>
+            <p class="errors" id="price_error"></p>
+
+            <p class="errors" >Пожалуйста Введите тэги и файлы заново</p>
+            <textarea class="discer" type="text" placeholder="описание*" name="discription" id="discription" >{{description}}</textarea>
+            <p class="errors" id="discription_error"></p>
+            
+            <form action="/flat_upload" method="POST" enctype="multipart/form-data" >
+            <input class="vers" class="saib" type="file"  value="добавить фотографии" name="photo" id="photo" multiple accept="image/*">
+          
+          </form>
+         
+
+ <p class="logx">Выберите категорию жилья</p>
+            <select class="selk"  id="nrol">
+                <option value="Апартаменты/Квартиры" >Выбор</option>
+</select>
+   
+<p class="logx">Выберите особенности</p>
+            <div class="mimrol">
+
+           <div class="mrol" id="sgh">
+           </div></div>
+            
+<input class="vers" class="saib" type="button"  value="Изменить Объявление" id="edit_all" >
+    
+            <script src="js/validate_edit.js"></script>
+        </div>
+        <div class="btn-up btn-up_hide"></div>
+    </main>
+    <script src="js/pgUp.js"></script>
+    <script src="js/sqlAdd.js"></script>
+	{{> footer}}
+</body>
+</html>

@@ -12,7 +12,7 @@
             
             <h1>Добавление Объявления</h1>
             
-            <input class="new_item" type="text" placeholder="Название жилья*" name="name" id="name">
+            <input class="new_item" type="text" placeholder="Название жилья*" name="name" id="name" >
             <p class="errors" id="name_error">
             </p>
             
@@ -22,7 +22,7 @@
             <input class="new_item" type="text" placeholder="адрес*" name="adress" id="adress">
             <p class="errors" id="adress_error"></p>
             
-            <input class="new_item" type="text" placeholder="Койко-мест в номере/апартаментах*" name="count_bed" id="count_bed">
+            <input class="new_item" type="text" placeholder="Койко-мест в номере*" name="count_bed" id="count_bed">
             <p class="errors" id="count_bed_error"></p>
             
             <input class="new_item" type="text" placeholder="цена в рублях за ночь*" name="price" id="price">
@@ -35,7 +35,7 @@
             <p class="errors" id="discription_error"></p>
             
             <form action="/flat_upload" method="POST" enctype="multipart/form-data" >
-            <input class="vers" class="saib" type="file"  value="добавить фотографии" name="photo" id="photo" multiple>
+            <input class="vers" class="saib" type="file"  value="добавить фотографии" name="photo" id="photo" multiple accept="image/*">
           
           </form>
          

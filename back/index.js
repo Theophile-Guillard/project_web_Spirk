@@ -104,6 +104,28 @@ app.get("/flat",jsonParser, function(request, response){
         }
     })       
 });
+app.get("/id_edit",jsonParser, function(request, response){
+    
+    let id=request.query.id;
+    let user=[id,serverCookie.user];
+    let sql='select * from flats where id_flat=? and login=?';
+    connection.query(sql,user,function(err,res){
+        console.log(res)
+        if (res.length>0){
+        response.render('edit_item_flat0.hbs',
+        {name:res[0].name,
+         date_up:res[0].date_up,
+         developer:res[0].developer,
+         adress:res[0].adress,
+         count_bed:res[0].count_bed,
+         price:res[0].price,
+         description:res[0].description
+        // main_img:res[0].main_img
+        })}else{
+            response.send('<h1>Такой страницы нету, или эту страницу создавали не вы</h1>');
+        }
+    })       
+});
 app.post("/photo",jsonParser, function(request, response){
     
     let id=request.body.id;
@@ -234,22 +256,22 @@ app.post('/catalogih',jsonParser,function(request,response){
        response.json(res);
          })
     })
+    app.post('/catalogihLk',jsonParser,function(request,response){
+        console.log('catalogihLk');
+            let user=[serverCookie.user]
+            let sql='select * from flats where login=?';
+           connection.query(sql,user,function(err,res){
+           response.json(res);
+             })
+        })
 
 
 app.post('/flat_upload',jsonParser, function(request,response){
-  
-
-    
 let id=0;
-
 var form=new formidable.IncomingForm();
 form.parse(request,function(err,fields,files){
     if (err) console.error(err);
- //   console.log(fields);
-    
-    
-
-        
+ //   console.log(fields); 
 fs.readFile(files['photo'].filepath,(err,data)=>{
     if (err) throw err;
     console.log('data',data)
@@ -273,9 +295,6 @@ let sql='insert into flats(name,date_up,developer,adress,count_bed,price,descrip
             id=res.insertId;
             //console.log('////////RES', res)
             let urt=URL.createObjectURL(new Blob(data));
-         
-        
-
          let ti=1;
         console.log('filessssssss',files['photo'+2]==null)
       while(files['photo'+ti]!=null)  {
@@ -293,24 +312,172 @@ let sql='insert into flats(name,date_up,developer,adress,count_bed,price,descrip
             let sql='insert into images(img,id_flat) values(?,?);';
                        connection.query(sql,user,function(errx,res){
                        console.log('err', errx);
-                        //response.json(res);
-            
                         let urt=URL.createObjectURL(new Blob(data));
                         console.log(urt);
+                        console.log('Введена доп. фото',ti) 
+                         })})}})})})})
 
-                        console.log('Введена доп. фото',ti)
-                       
-                     //   response.redirect('index')   
-                         })})}}) })}) 
+                         app.post('/flat_upload',jsonParser, function(request,response){
+let id=0;
+var form=new formidable.IncomingForm();
+form.parse(request,function(err,fields,files){
+    if (err) console.error(err);
+ //   console.log(fields); 
+fs.readFile(files['photo'].filepath,(err,data)=>{
+    if (err) throw err;
+    console.log('data',data)
+let user=[
+    fields['name'],
+fields['date'],
+fields['developer'],
+fields['adress'],
+fields['count_bed'],
+fields['price'],
+fields['discription'],
+data,    //blob,//files['photo'],///img
+ serverCookie.user,//login
+ fields['nrol'],
+ fields['tags']
+]            
+let sql='insert into flats(name,date_up,developer,adress,count_bed,price,description,main_img,login,gen_filter,side_filters) values(?,?,?,?,?,?,?,?,?,?,?);';
+           connection.query(sql,user,function(err,res){
+           console.log('err', err);
+            //response.json(res);
+            id=res.insertId;
+            //console.log('////////RES', res)
+            let urt=URL.createObjectURL(new Blob(data));
+         let ti=1;
+        console.log('filessssssss',files['photo'+2]==null)
+      while(files['photo'+ti]!=null)  {
+        console.log('start', ti,id);
+        let ak='photo'+ti;
+        ti++;
+        console.log(ak)
+      fs.readFile(files[ak].filepath,(err,data)=>{
+                if (err) throw err;
+                console.log('data',files[ak].size)
+            let user=[
+             data,
+             id
+            ]            
+            let sql='insert into images(img,id_flat) values(?,?);';
+                       connection.query(sql,user,function(errx,res){
+                       console.log('err', errx);
+                        let urt=URL.createObjectURL(new Blob(data));
+                        console.log(urt);
+                        console.log('Введена доп. фото',ti) 
+                         })})}})})})})
+
+app.post('/flat_edit',jsonParser, function(request,response){
+let id=0;
+var form=new formidable.IncomingForm();
+form.parse(request,function(err,fields,files){
+    if (err) console.error(err);
+ //   console.log(fields); 
+fs.readFile(files['photo'].filepath,(err,data)=>{
+    if (err) throw err;
+    console.log('data',data)
+let user=[
+    
+    fields['name'],
+fields['date'],
+fields['developer'],
+fields['adress'],
+fields['count_bed'],
+fields['price'],
+fields['discription'],
+data,    //blob,//files['photo'],///img
+ serverCookie.user,//login
+ fields['nrol'],
+ fields['tags'],
+ fields['id']
+]            
+let sql='update flats set name=?, date_up=?, developer=?,adress=?,count_bed=?,price=?,description=?,main_img=?,login=?,gen_filter=?,side_filters=? where id_flat=?;';
+           connection.query(sql,user,function(err,res){
+           console.log('err', err);
+            //response.json(res);
+            
+            //console.log('////////RES', res)
+        //    let urt=URL.createObjectURL(new Blob(data));
+         let ti=1;
+        console.log('filessssssss',files['photo'+2]==null)
+        let usr=[fields['id']]
+            let sqls='delete from images where id_flat=?';
+            connection.query(sqls,usr,function(rer,res){})
+      while(files['photo'+ti]!=null)  {
+        console.log('start', ti);
+        let ak='photo'+ti;
+        ti++;
+        console.log(ak)
+      fs.readFile(files[ak].filepath,(err,data)=>{
+                if (err) throw err;
+                console.log('data',files[ak].size)
+            let user=[
+             data,
+             fields['id']
+            ]            
+            
+
+            let sql='insert into images(img,id_flat) values(?,?);';
+                       connection.query(sql,user,function(errx,res){
+                       console.log('err', errx);
+                        let urt=URL.createObjectURL(new Blob(data));
+                        console.log(urt);
+                        console.log('Введена доп. фото',ti) 
+                         })})}})})})})
 
 
-                        
 
-                        })
-
-
-
-
+                         app.post('/flat_upload',jsonParser, function(request,response){
+                            let id=0;
+                            var form=new formidable.IncomingForm();
+                            form.parse(request,function(err,fields,files){
+                                if (err) console.error(err);
+                             //   console.log(fields); 
+                            fs.readFile(files['photo'].filepath,(err,data)=>{
+                                if (err) throw err;
+                                console.log('data',data)
+                            let user=[
+                                fields['name'],
+                            fields['date'],
+                            fields['developer'],
+                            fields['adress'],
+                            fields['count_bed'],
+                            fields['price'],
+                            fields['discription'],
+                            data,    //blob,//files['photo'],///img
+                             serverCookie.user,//login
+                             fields['nrol'],
+                             fields['tags']
+                            ]            
+                            let sql='insert into flats(name,date_up,developer,adress,count_bed,price,description,main_img,login,gen_filter,side_filters) values(?,?,?,?,?,?,?,?,?,?,?);';
+                                       connection.query(sql,user,function(err,res){
+                                       console.log('err', err);
+                                        //response.json(res);
+                                        id=res.insertId;
+                                        //console.log('////////RES', res)
+                                        let urt=URL.createObjectURL(new Blob(data));
+                                     let ti=1;
+                                    console.log('filessssssss',files['photo'+2]==null)
+                                  while(files['photo'+ti]!=null)  {
+                                    console.log('start', ti,id);
+                                    let ak='photo'+ti;
+                                    ti++;
+                                    console.log(ak)
+                                  fs.readFile(files[ak].filepath,(err,data)=>{
+                                            if (err) throw err;
+                                            console.log('data',files[ak].size)
+                                        let user=[
+                                         data,
+                                         id
+                                        ]            
+                                        let sql='insert into images(img,id_flat) values(?,?);';
+                                                   connection.query(sql,user,function(errx,res){
+                                                   console.log('err', errx);
+                                                    let urt=URL.createObjectURL(new Blob(data));
+                                                    console.log(urt);
+                                                    console.log('Введена доп. фото',ti) 
+                                                     })})}})})})})
 app.get('/exit',jsonParser,function(request,response){
     response.clearCookie('auth');
     response.clearCookie('user');

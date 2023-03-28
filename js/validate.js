@@ -172,7 +172,7 @@ request.open("POST", '/flat_upload');
 console.log('forming data....');
 request.send(formData);
   
-alert("Товар добавлен!");
+alert("Объявление добавлено!");
     
 window.location.href='index';
     }
