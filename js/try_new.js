@@ -9,7 +9,7 @@ save_button.addEventListener("click", function(){
 			let rec = JSON.parse(request.response);
    
             if (rec.good){
-                window.location.href='new_item_game';
+                window.location.href='new_item_flat';
             }else{
                 alert(rec.mess);
             }

@@ -7,22 +7,14 @@ request.open("POST", "/catalogih", true);
     
 			let rec = JSON.parse(request.response);
             
-
-     // console.log(rec);
-    //agd.remove(agd.firstChild);
       for (let i=0;i<rec.length;i++){
-        //let opt=document.createElement('option');
-        //opt.setAttribute('value', rec[i].name_rol);
-        //opt.innerText=rec[i].name_rol;
-        //agd.append(opt);
-        
-        
+       
         let one=document.createElement('div');
         one.setAttribute('class', "one-element");
         afc.append(one);
         
         let a=document.createElement('a');
-        a.setAttribute('href','место под ссылку');
+        a.setAttribute('href','/flat?id='+rec[i].id_flat);
         a.innerText=rec[i].name;
         one.append(a);
 
@@ -31,16 +23,9 @@ request.open("POST", "/catalogih", true);
         one.append(two);
 
         let img=document.createElement('img');
-     //   console.log('array////',rec[i].main_img);
-
-
-        
-//let blobs=new Buffer.Blob(rec[i].main_img);
-
-        //const blob=new Blob([new Uint8Array(rec[i].main_img)]);
-       // console.log('blobbing',rec[i].main_img.data)
+     
         const blobs=new Blob([new Uint8Array(rec[i].main_img.data)]);
-        //console.log('cer ',blobs)
+     
         let urt=URL.createObjectURL(blobs);
         img.setAttribute('src',urt);
 
@@ -64,19 +49,19 @@ request.open("POST", "/catalogih", true);
         three.append(tags);
 
         let t2=document.createElement('li');
-        t2.innerText='Год выпуска: '+rec[i].date_up;
+        t2.innerText='Контактный телефон: '+rec[i].date_up;
         tags.append(t2);
 
         let t3=document.createElement('li');
-        t3.innerText='Разработчик: '+rec[i].developer;
+        t3.innerText='Контактное лицо: '+rec[i].developer;
         tags.append(t3);
 
         let t4=document.createElement('li');
-        t4.innerText='Издатель: '+rec[i].publisher;
+        t4.innerText='Место проживания: '+rec[i].address;
         tags.append(t4);
 
         let t5=document.createElement('li');
-        t5.innerText='Платформа: '+rec[i].platform;
+        t5.innerText='Койкл-мест: '+rec[i].count_bed;
         tags.append(t5);
 
         let t6=document.createElement('li');
