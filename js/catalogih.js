@@ -7,22 +7,14 @@ request.open("POST", "/catalogih", true);
     
 			let rec = JSON.parse(request.response);
             
-
-     // console.log(rec);
-    //agd.remove(agd.firstChild);
       for (let i=0;i<rec.length;i++){
-        //let opt=document.createElement('option');
-        //opt.setAttribute('value', rec[i].name_rol);
-        //opt.innerText=rec[i].name_rol;
-        //agd.append(opt);
-        
-        
+       
         let one=document.createElement('div');
         one.setAttribute('class', "one-element");
         afc.append(one);
         
         let a=document.createElement('a');
-        a.setAttribute('href','место под ссылку');
+        a.setAttribute('href','/game?id='+rec[i].id_game);
         a.innerText=rec[i].name;
         one.append(a);
 
@@ -31,16 +23,9 @@ request.open("POST", "/catalogih", true);
         one.append(two);
 
         let img=document.createElement('img');
-     //   console.log('array////',rec[i].main_img);
-
-
-        
-//let blobs=new Buffer.Blob(rec[i].main_img);
-
-        //const blob=new Blob([new Uint8Array(rec[i].main_img)]);
-       // console.log('blobbing',rec[i].main_img.data)
+     
         const blobs=new Blob([new Uint8Array(rec[i].main_img.data)]);
-        //console.log('cer ',blobs)
+     
         let urt=URL.createObjectURL(blobs);
         img.setAttribute('src',urt);
 

@@ -82,7 +82,48 @@ app.use(jsonParser,function(request, response, next){
     }     );
 });
 
-
+app.get("/game",jsonParser, function(request, response){
+    
+    let id=request.query.id;
+    let user=[id];
+    let sql='select * from games where id_game=?';
+    connection.query(sql,user,function(err,res){
+        console.log(res)
+        if (res.length>0){
+        response.render('item_game0.hbs',
+        {name:res.name,
+         date_up:res[0].date_up,
+         developer:res[0].developer,
+         publisher:res[0].publisher,
+         platform:res[0].platform,
+         price:res[0].price,
+         description:res[0].description,
+         gen:res[0].gen_filter,
+         side:res[0].side_filters
+        // main_img:res[0].main_img
+        })}else{
+            response.send('<h1>Такой страницы нету</h1>');
+        }
+    })       
+});
+app.post("/photo",jsonParser, function(request, response){
+    
+    let id=request.body.id;
+    let user=[id];
+    let sql='select * from games where id_game=?';
+    connection.query(sql,user,function(err,res){
+        console.log('yes', res, id);
+        if (res.length>0){
+        response.json({main_img:res[0].main_img})}})});
+app.post("/photo1",jsonParser, function(request, response){
+    
+            let id=request.body.id;
+            let user=[id];
+            let sql='select * from images where id_game=?';
+            connection.query(sql,user,function(err,res){
+                console.log('yes1', res, id);
+                if (res.length>0){
+                response.json(res)}})});
 
 app.get("/",jsonParser, function(request, response){
     console.log('general line f');
@@ -192,25 +233,46 @@ app.post('/catalogih',jsonParser,function(request,response){
         //let user=[request.body.rol]
         let sql='select * from games';
        connection.query(sql,function(err,res){
-     //  console.log(res[0].main_img);
-     let g=[];
-for (let i=0;i<res.length;i++){
-
-}
-
-
        response.json(res);
          })
     })
+    app.post('/filtering',jsonParser,function(request,response){
+        console.log('filtering');
 
+        let sumtags=request.body.sumtags;
+            let user=[request.body.nrol]
+            let sql='select * from games where gen_filter=? ';
+            if (request.body.nrol=='\%'){
+                sql='select * from games where gen_filter is not null ';
+            }
+            console.log(sumtags, request.body.nrol);
+            for (let i=0;i<sumtags.length;i++){
+                //user.push(sumtags[i]);
+                sql+="and side_filters like '%"+sumtags[i]+"%' "
+            }
+            sql+=request.body.adding;
+           connection.query(sql,user,function(err,res){
+            console.log(sql);
+            console.log('error', err)
+            console.log(res);
+           response.json(res);
+             })
+        })
 
 app.post('/game_upload',jsonParser, function(request,response){
-   console.log('ggg')
   
+
+    
+let id=0;
+
 var form=new formidable.IncomingForm();
 form.parse(request,function(err,fields,files){
     if (err) console.error(err);
-    console.log(fields);
+ //   console.log(fields);
+    
+    
+
+        
 fs.readFile(files['photo'].filepath,(err,data)=>{
     if (err) throw err;
     console.log('data',data)
@@ -231,16 +293,45 @@ let sql='insert into games(name,date_up,developer,publisher,platform,price,descr
            connection.query(sql,user,function(err,res){
            console.log('err', err);
             //response.json(res);
-
+            id=res.insertId;
+            //console.log('////////RES', res)
             let urt=URL.createObjectURL(new Blob(data));
-            console.log(urt);
-         //   response.redirect('index')   
-             })})
-             
-});
+         
+        
 
- 
-});
+         let ti=1;
+        console.log('filessssssss',files['photo'+2]==null)
+      while(files['photo'+ti]!=null)  {
+        console.log('start', ti,id);
+        let ak='photo'+ti;
+        ti++;
+        console.log(ak)
+      fs.readFile(files[ak].filepath,(err,data)=>{
+                if (err) throw err;
+                console.log('data',files[ak].size)
+            let user=[
+             data,
+             id
+            ]            
+            let sql='insert into images(img,id_game) values(?,?);';
+                       connection.query(sql,user,function(errx,res){
+                       console.log('err', errx);
+                        //response.json(res);
+            
+                        let urt=URL.createObjectURL(new Blob(data));
+                        console.log(urt);
+
+                        console.log('Введена доп. фото',ti)
+                       
+                     //   response.redirect('index')   
+                         })})}}) })}) 
+
+
+                        
+
+                        })
+
+
 
 
 app.get('/exit',jsonParser,function(request,response){

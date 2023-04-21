@@ -16,8 +16,7 @@ top:200px;
 .leftmenu-ul h1 {
 	padding: 1px;
 	text-align: center;	
-background:linear-gradient(to top,#140086,#6767e6);
-border: #000000 2px double;
+
 color: #f7a53b;
 
 font-family:"Goudy stout", Times, serif;
@@ -26,26 +25,24 @@ font-size: 25px;
 .leftmenu-ul a{
 	position: relative;
 	top:-18px;
-background: linear-gradient(to left,#949494,#4d4c4c);
+
 color: #fff;
 padding: 5px;
 text-decoration: none;
 font-weight: bold;
-border-left: 5px solid #33ADFF;
-border-right: 5px solid #039D1F;
+
 display: block;
 }
 .leftmenu-ul input{display: inline-block;}
 .leftmenu-ul div{
 	position: relative;
-	top:-18px;
-background: linear-gradient(to left,#949494,#4d4c4c);
+	
+
 color: #fff;
 padding: 5px;
 text-decoration: none;
 font-weight: bold;
-border-left: 5px solid #33ADFF;
-border-right: 5px solid #039D1F;
+
 }
 .leftmenu-ul div p{display: inline;}
 
@@ -635,6 +632,25 @@ color:#d8d8d8;
 	color: #d8d8d8;
 	text-shadow: -1px -1px 0 black, 1px 1px 0
 	 black, 1px -1px 0 black, -1px 1px 0 black;
+}
+.selk1{
+	font-size: 20px;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	color: #d8d8d8;
+	
+	
+	text-shadow: -1px -1px 0 black, 1px 1px 0
+	 black, 1px -1px 0 black, -1px 1px 0 black;
+}
+.filt{
+	
+
+	border: #000000 double;
+	
+}
+.regh{
+	
 }
 .logx{
 	font-size: 20px;

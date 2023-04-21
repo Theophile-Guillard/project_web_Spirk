@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Кипарис-{{name}}</title>
+    <link rel="stylesheet" type="text/css" href="styles/margle.css">
+	<link rel="stylesheet" type="text/css" href="styles/discript.css">
+   
+</head>
+<body class="main-of-all">
+	 {{> menu}}
+    <main>
+		<div class="masterblock">
+            <h1>{{name}}</h1>
+            <div class="progress-container">
+                <div class="progress-bar" id="myBar"></div>
+            </div>  
+            <div class="one-element solid-one" id="place_for_photo">
+                
+                <div class="one-element-context">
+                    <img class="zooms"  width="200" height="200" alt="photo 1" id="photo1">
+                </div>
+                    <div class="one-element-disc">
+                    <ul>
+                        <li>Год выпуска: {{date_up}}</li>
+                        <li>Разработчик: {{develover}}</li>
+                        <li>Издатель: {{publisher}}</li>
+                        <li>Платформа: {{platform}}</li>
+                        <li>Цена: {{price}} руб.</li>
+                        
+                    </ul>
+                  </div>
+            </div>
+            <div>{{gen}}  {{side}}</div>
+	<div> {{description}}</div>
+	 </div>
+	 <div class="btn-up btn-up_hide"></div>
+	 </main>
+     <script src="js/pgUp.js"></script>
+     <script src="js/item_game.js"></script>
+     <script src="js/addauthor.js"></script>
+     <script src="js/pictsize.js"></script>
+     <script src="js/scrollBar.js"></script>
+     
+     
+    {{> footer}}
+    
+</body>
+</html>

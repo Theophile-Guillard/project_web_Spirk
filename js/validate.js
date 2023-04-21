@@ -136,8 +136,7 @@ alert(sum_error);
     }else{
 
 
-        alert("Заявка на товар успешно отправлена, ожидайте ответа от наших менеджеров");
-    
+      
 
 
         
@@ -154,11 +153,12 @@ let sumtags='';
 let button=document.getElementById('sgh');
 let k=button.firstChild;
 while (k.nextElementSibling!=null){
-    k=k.nextElementSibling;
     let xc=k.firstChild;
     if (xc.checked){
 sumtags+='::'+xc.value;
     }
+    k=k.nextElementSibling;
+   
 }
 
 var formData = new FormData();
@@ -178,13 +178,25 @@ formData.append('date',date.value);
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', "/game_upload" , true);
+    
     formData.append('photo',a.files[0]);
+
+    if (a.files.length>1){
+        for(let i=1;i<a.files.length;i++){
+            console.log('photo',i,a.files[i]);
+            formData.append('photo'+i,a.files[i]);
+        }
+    }
+
+
+
     var request = new XMLHttpRequest();
 request.open("POST", '/game_upload');
 console.log('forming data....');
 request.send(formData);
   
-
+alert("Товар добавлен!");
+    
 window.location.href='index';
     }
 })
