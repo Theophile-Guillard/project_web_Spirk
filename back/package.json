@@ -10,6 +10,7 @@
         "express-fileupload": "^1.4.0",
         "express-handlebars": "^7.0.7",
         "formidable": "^2.1.1",
-        "hbs": "^4.2.0"
+        "hbs": "^4.2.0",
+        "mysql2": "^3.2.3"
     }
 }
