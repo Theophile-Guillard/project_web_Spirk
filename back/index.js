@@ -8,7 +8,7 @@ const app = express();
 var cookieParser=require('cookie-parser')
 let fs=require("fs")
 const formidable = require('formidable');
-let port=process.env.PORT||80;
+let port=process.env.PORT||3306;
 const dn=__dirname.length
 const dirk=__dirname.slice(0,dn-5);
 app.listen(port);
