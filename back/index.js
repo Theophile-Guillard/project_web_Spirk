@@ -1,7 +1,7 @@
 
 const express = require("express");
-//var fileUpload = require('express-fileupload');
-//const expressHbs = require("express-handlebars");
+var fileUpload = require('express-fileupload');
+const expressHbs = require("express-handlebars");
 var bodyParser = require('body-parser')
 const hbs = require("hbs");
 const app = express();
