@@ -5,6 +5,7 @@ const expressHbs = require("express-handlebars");
 var bodyParser = require('body-parser')
 const hbs = require("hbs");
 const app = express();
+require('dotenv').config();
 var cookieParser=require('cookie-parser')
 let fs=require("fs")
 const formidable = require('formidable');
