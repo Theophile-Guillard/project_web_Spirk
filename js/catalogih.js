@@ -72,9 +72,19 @@ request.open("POST", "/catalogih", true);
         discer.setAttribute('class','overflowx');
         three.append(discer);
 
+        console.log("проверка факта захода");
+        let px=document.createElement('p');
+        px.setAttribute("class","localp1");
+        px.innerText="Жанр: "+rec[i].gen_filter;
+        discer.append(px)
+      
+        let strig=rec[i].side_filters.split("::");
+        for (let gf=0;gf<strig.length;gf++){
+          if (strig[gf].length>0){
         let p=document.createElement('p');
-        p.innerText=rec[i].description;
-        discer.append(p)
+        p.setAttribute('class','localp')
+        p.innerText="-"+strig[gf];
+        discer.append(p)}}
 
 
       //  console.log(one.innerHTML);
