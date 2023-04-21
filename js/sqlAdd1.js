@@ -36,7 +36,7 @@ function arc(nmrol){
         div.append(p);
 
         axc.append(div);
-        console.log('cry',p.innerText)
+     //   console.log('cry',p.innerText)
   
       }
 })
@@ -47,7 +47,7 @@ let firstl=true;
 agd.addEventListener("click", function(){
   let user=JSON.stringify({awaiter:0});
     let request = new XMLHttpRequest();
-    console.log('any?  ',agd.options[agd.selectedIndex].value)
+   // console.log('any?  ',agd.options[agd.selectedIndex].value)
     if (!firstl){arc(agd.options[agd.selectedIndex].value)}
     if (firstl){
     request.open("POST", "/trusting", true);   
@@ -57,6 +57,13 @@ agd.addEventListener("click", function(){
 			let rec = JSON.parse(request.response);
       console.log(rec);
     agd.remove(agd.firstChild);
+
+    let opt11=document.createElement('option');
+    opt11.setAttribute('value', "\%");
+    opt11.innerText="Все жанры";
+//opt.addEventListener('select',arc(rec[i].name_rol));
+    agd.append(opt11);
+
       for (let i=0;i<rec.length;i++){
         let opt=document.createElement('option');
         opt.setAttribute('value', rec[i].name_rol);
@@ -80,21 +87,29 @@ request.send(user);}}
 
   let nrol='\%';
   let sumtags=[];                   
-  if (j){       
-let nrol=agd.options[agd.selectedIndex].value;} //////главная роль
-
+  console.log("проверка качества", j)
+  if (j){
+         
+nrol=agd.options[agd.selectedIndex].value;
+console.log("роль изменена",nrol);  
+} //////главная роль
+console.log("а че с ролью?",nrol);
 let button=document.getElementById('nav_bd');
 let k=button.firstChild;
 if (k!=null){
-while (k.nextElementSibling!=null){
+while (k!=null){
   let xc=k.firstChild;
   if (xc.checked){
 //sumtags+='-'+xc.value;                          
-sumtags.push(xc.value); }  
+sumtags.push(xc.value); }
+
+if (k.nextSibling!=null){
   k=k.nextElementSibling;
-   
+}else{
+  break;
+}
 }}
-    console.log(sumtags);
+    console.log("sumtags",sumtags);
 
 let time_start=document.getElementById('time_start');
 let time_end=document.getElementById('time_end');
@@ -130,6 +145,7 @@ while(afc.childElementCount>0){
   let xz=document.createElement('h1');
   xz.innerText='Популярные игры';
   afc.append(xz);
+  console.log("проверка факта захода2");
 for (let i=0;i<rec.length;i++){
        
   let one=document.createElement('div');
@@ -195,9 +211,19 @@ for (let i=0;i<rec.length;i++){
   discer.setAttribute('class','overflowx');
   three.append(discer);
 
-  let p=document.createElement('p');
-  p.innerText=rec[i].description;
-  discer.append(p)
+  console.log("проверка факта захода");
+  let px=document.createElement('p');
+  px.setAttribute("class","localp1");
+  px.innerText="Жанр: "+rec[i].gen_filter;
+  discer.append(px)
+
+  let strig=rec[i].side_filters.split("::");
+        for (let gf=0;gf<strig.length;gf++){
+          if (strig[gf].length>0){
+        let p=document.createElement('p');
+        p.setAttribute('class','localp')
+        p.innerText="-"+strig[gf];
+        discer.append(p)}}
 
 
 //  console.log(one.innerHTML);

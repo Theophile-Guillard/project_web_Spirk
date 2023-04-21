@@ -8,7 +8,7 @@ const app = express();
 var cookieParser=require('cookie-parser')
 let fs=require("fs")
 const formidable = require('formidable');
-let port=3000;
+let port=process.env.PORT||80;
 const dn=__dirname.length
 const dirk=__dirname.slice(0,dn-5);
 app.listen(port);
@@ -252,13 +252,38 @@ app.post('/catalogih',jsonParser,function(request,response){
             }
             sql+=request.body.adding;
            connection.query(sql,user,function(err,res){
+            console.log(request.body.nrol);
             console.log(sql);
             console.log('error', err)
-            console.log(res);
+         //   console.log(res);
            response.json(res);
              })
         })
 
+        app.post('/filteringSearch',jsonParser,function(request,response){
+            console.log('filteringSearch');
+    
+            let sear="%"+request.body.sear+"%";
+            console.log(request.body)
+                let user=[sear]
+                let sql='select * from games where name like ? LIMIT 7';
+               // if (request.body.nrol=='\%'){
+                 //   sql='select * from games where gen_filter is not null ';
+                //}
+                //console.log(sumtags, request.body.nrol);
+              //  for (let i=0;i<sumtags.length;i++){
+                    //user.push(sumtags[i]);
+                //    sql+="and side_filters like '%"+sumtags[i]+"%' "
+                //}
+                //sql+=request.body.adding;
+               connection.query(sql,user,function(err,res){
+                console.log(request.body.sear);
+                console.log(sql);
+                console.log('error', err)
+             //   console.log(res);
+               response.json(res);
+                 })
+            })
 app.post('/game_upload',jsonParser, function(request,response){
   
 

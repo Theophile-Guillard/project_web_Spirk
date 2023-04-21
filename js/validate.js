@@ -152,8 +152,11 @@ let b=document.getElementById('nrol');
 let sumtags='';
 let button=document.getElementById('sgh');
 let k=button.firstChild;
-while (k.nextElementSibling!=null){
+console.log("k",k)
+while (k!=null&&k.nextElementSibling!=null){
+    k=k.nextSibling;
     let xc=k.firstChild;
+    console.log("xc",xc)
     if (xc.checked){
 sumtags+='::'+xc.value;
     }

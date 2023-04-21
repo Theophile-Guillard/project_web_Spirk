@@ -1,0 +1,25 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node back/index.js"
+   
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Theophile-Guillard/project_web_Spirk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Theophile-Guillard/project_web_Spirk/issues"
+  },
+  "homepage": "https://github.com/Theophile-Guillard/project_web_Spirk#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "description": ""
+}
